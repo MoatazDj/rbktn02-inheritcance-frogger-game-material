@@ -21,13 +21,21 @@ var Engine = (function(global) {
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
+        // score = doc.createElement('canvas'),
+        // ctx2 = score.getContext('2d'),
         ctx = canvas.getContext('2d'),
+        
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
-    doc.body.appendChild(canvas);
+    canvas.height = 650;
 
+    // score.width = 500;
+    // score.height = 600;
+    
+    doc.body.appendChild(canvas);
+    // doc.body.appendChild(score);
+    
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -119,7 +127,6 @@ var Engine = (function(global) {
             row, col;
 
         // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height);
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -175,14 +182,7 @@ var Engine = (function(global) {
         'images/enemy-bug.png',
         'images/char-boy.png',
         'images/char-cat-girl.png',
-        'images/char-horn-girl.png',
-        'images/char-pink-girl.png',
-        'images/char-princess-girl.png',
-        'images/Heart.png',
-        'images/Gem-Blue.png',
-        'images/Gem-Green.png',
-        'images/Gem-Orange.png',
-        'images/Star.png'
+        
     ]);
     Resources.onReady(init);
 

@@ -12,7 +12,7 @@ var Enemy = function(x, y) {
     this.width = 50;
     this.height = 50;
     this.sprite = 'images/enemy-bug.png';
-    this.speed = Math.floor(Math.random()*500) +100
+    this.speed = Math.floor(Math.random()*(300 - 100)+100)
 };
 
 // Update the enemy's position, required method for game
@@ -27,7 +27,6 @@ Enemy.prototype.update = function(dt) {
    } else{
        this.x = -100
        this.x += (this.speed  * dt)+60
-       console.log(this.speed)
    }
 };
 
@@ -45,17 +44,14 @@ var Player = function (x, y) {
     this.y = y;
     this.width = 80;
     this.height = 80;
-    this.sprite = 'images/char-cat-girl.png';
+    this.sprite = selectedChar;
 }
 Player.prototype.update = function(dt) {
     if (this.y === -50) {
         this.reset(200, 400) 
         alert("you win")
        }
-       this.collision()
-
-       
-    
+       this.checkCollisions()
 }
 
 Player.prototype.render = function () {
@@ -95,7 +91,7 @@ var allEnemies =[new Enemy(0,70),new Enemy(0,240), new Enemy(0, 140 )]
 // Place the player object in a variable called player
 var player = new Player(200, 400)
 
-Player.prototype.collision= function(){
+Player.prototype.checkCollisions= function(){
     for (let i = 0; i < allEnemies.length; i++) {
         if (allEnemies[i].x < this.x + this.width &&
             allEnemies[i].x + allEnemies[i].width > this.x &&
@@ -107,6 +103,8 @@ Player.prototype.collision= function(){
     }
     
 }
+
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -120,20 +118,64 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-$(document).ready(function() {
-    $("#boy").click(function() {
-        $("#choosen").text('boy')
-        play.sprite = "images/char-boy.png"
-    })
-    $("#cat").click(function() {
-        $("#choosen").text('Cat Girl')
-        play.sprite = "images/char-cat-girl.png"
-    })
-    $("#princess").click(function() {
-        $("#choosen").text('Princess Girl')
-        play.sprite = "images/char-princess-girl.png"
-    })
-    
-    
-})
+document.getElementById('choosen').innerHTML = 'choose your player';
+var selectedChar = false; 
+var selectChar = function (char) {
+    selectedChar = char
+    switch(selectedChar){
+        case 'images/char-boy.png':
+            document.getElementById('choosen').innerHTML = 'Boy'
+            break;        
+        case 'images/char-cat-girl.png' :
+            document.getElementById('choosen').innerHTML = 'Cat girl'   
+            break;
+        case 'images/char-horn-girl.png':
+            document.getElementById('choosen').innerHTML = 'Horn girl'
+            break;
+        }
+     return selectedChar
+}
 
+function startGame() {
+    if (selectedChar === false) {
+        alert('Please select a player')
+    }
+    document.getElementById("playerss").getAttribute('class', 'hide');
+    Engine(this);
+}
+// $(document).ready(function() {
+//     $("#boy").click(function() {
+//         $("#choosen").text('boy')
+//         play.sprite = "images/char-boy.png"
+//     })
+//     $("#cat").click(function() {
+//         $("#choosen").text('Cat Girl')
+//         play.sprite = "images/char-cat-girl.png"
+//     })
+//     $("#princess").click(function() {
+//         $("#choosen").text('Princess Girl')
+//         play.sprite = "images/char-princess-girl.png"
+//     })
+//     $("#player-selected").click(function(){
+//         $(".playerss").hide();
+//     //  <script src="js/resources.js"></script>
+//     // <script src="js/app.js"></script>
+//     // <script src="js/engine.js"></script>
+//         // startGame()
+//     })
+    
+//     // function startGame() {
+//     //     if ($("#choosen").text() === 'choose you player') {
+//     //         alert('Please Select a Player');
+//     //     } else {
+//     //         Engine(this);
+//     //     }
+//     // }
+    
+    
+// })
+
+// var Game = function() {
+// this.level = level;
+// this.score = score
+// }
