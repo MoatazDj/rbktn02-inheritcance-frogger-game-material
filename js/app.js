@@ -35,9 +35,24 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+
+var selectedChar = false; 
+var selectChar = function(char) {
+    selectedChar = char;
+    switch(selectedChar){
+        case 'images/char-boy.png':
+            document.getElementById('choose').innerHTML = 'Boy';
+            break;        
+        case 'images/char-cat-girl.png':
+            document.getElementById('choose').innerHTML = 'Cat girl';   
+            break;
+        case 'images/char-horn-girl.png':
+            document.getElementById('choose').innerHTML = 'Horn girl';
+            break;
+        }
+     return selectedChar
+}
+
 
 var Player = function (x, y) {
     this.x = x;
@@ -55,7 +70,7 @@ Player.prototype.update = function(dt) {
 }
 
 Player.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+    ctx.drawImage(Resources.get(selectedChar), this.x, this.y)
 }
 Player.prototype.handleInput = function(move) {
     var win  = 0;
@@ -81,6 +96,21 @@ Player.prototype.reset = function(x, y) {
         this.x = x
         this.y = y
 }
+// Now write your own player class
+// This class requires an update(), render() and
+// a handleInput() method.
+
+document.addEventListener('keyup', function(e) {
+    var allowedKeys = {
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down'
+    };
+    player.handleInput(allowedKeys[e.keyCode]);
+});
+
+
 // yeah it's the same 
 
 // Now instantiate your objects.
@@ -108,74 +138,21 @@ Player.prototype.checkCollisions= function(){
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
-    player.handleInput(allowedKeys[e.keyCode]);
-});
-
-document.getElementById('choosen').innerHTML = 'choose your player';
-var selectedChar = false; 
-var selectChar = function (char) {
-    selectedChar = char
-    switch(selectedChar){
-        case 'images/char-boy.png':
-            document.getElementById('choosen').innerHTML = 'Boy'
-            break;        
-        case 'images/char-cat-girl.png' :
-            document.getElementById('choosen').innerHTML = 'Cat girl'   
-            break;
-        case 'images/char-horn-girl.png':
-            document.getElementById('choosen').innerHTML = 'Horn girl'
-            break;
-        }
-     return selectedChar
-}
 
 function startGame() {
     if (selectedChar === false) {
-        alert('Please select a player')
+        alert('Please select a player');
+    }else {
+        myFunction()
+        Engine(this);
     }
-    document.getElementById("playerss").getAttribute('class', 'hide');
-    Engine(this);
 }
-// $(document).ready(function() {
-//     $("#boy").click(function() {
-//         $("#choosen").text('boy')
-//         play.sprite = "images/char-boy.png"
-//     })
-//     $("#cat").click(function() {
-//         $("#choosen").text('Cat Girl')
-//         play.sprite = "images/char-cat-girl.png"
-//     })
-//     $("#princess").click(function() {
-//         $("#choosen").text('Princess Girl')
-//         play.sprite = "images/char-princess-girl.png"
-//     })
-//     $("#player-selected").click(function(){
-//         $(".playerss").hide();
-//     //  <script src="js/resources.js"></script>
-//     // <script src="js/app.js"></script>
-//     // <script src="js/engine.js"></script>
-//         // startGame()
-//     })
-    
-//     // function startGame() {
-//     //     if ($("#choosen").text() === 'choose you player') {
-//     //         alert('Please Select a Player');
-//     //     } else {
-//     //         Engine(this);
-//     //     }
-//     // }
-    
-    
-// })
 
-// var Game = function() {
-// this.level = level;
-// this.score = score
-// }
+function myFunction() {
+    var x = document.getElementById("playerss");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }

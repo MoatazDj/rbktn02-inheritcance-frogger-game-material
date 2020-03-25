@@ -21,20 +21,14 @@ var Engine = (function(global) {
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
-        // score = doc.createElement('canvas'),
-        // ctx2 = score.getContext('2d'),
         ctx = canvas.getContext('2d'),
         
         lastTime;
 
     canvas.width = 505;
     canvas.height = 650;
-
-    // score.width = 500;
-    // score.height = 600;
     
     doc.body.appendChild(canvas);
-    // doc.body.appendChild(score);
     
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -182,7 +176,7 @@ var Engine = (function(global) {
         'images/enemy-bug.png',
         'images/char-boy.png',
         'images/char-cat-girl.png',
-        
+        'images/char-horn-girl.png',
     ]);
     Resources.onReady(init);
 
@@ -191,4 +185,4 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
-})(this);
+})

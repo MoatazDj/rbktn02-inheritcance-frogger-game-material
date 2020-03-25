@@ -11,13 +11,15 @@
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
     <div id ="playerss">
+    <div>
         <h2>Select your Player</h2>
-        <button  class="player-selected" onclick="selectChar('images/char-boy.png')"></button>
-        <button  class="player-selected" onclick="selectChar('images/char-cat-girl.png')"></button>
-        <button class="player-selected" onclick="selectChar('images/char-horn-girl.png')"></button>
-        <h4 id = "choosen"></h4>
-        <button onclick="startGame()" id="play-game">Play the Game</button>
+        <button  class="player-selected" onclick="selectChar('images/char-boy.png')"><img src="images/char-boy.png" alt="boy character">
+        <button  class="player-selected" onclick="selectChar('images/char-cat-girl.png')"><img src="images/char-cat-girl.png" alt="cat girl character">
+        <button class="player-selected" onclick="selectChar('images/char-horn-girl.png')"><img src="images/char-horn-girl.png" alt="horn girl character">
     </div>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <h4 id ="choose">choose your player</h4>
+        <button onclick="startGame()" class="play-game">Play the Game</button>
+    </div>
+</div>
 </body>
 </html>
