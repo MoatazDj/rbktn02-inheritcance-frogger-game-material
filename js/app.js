@@ -120,4 +120,20 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+$(document).ready(function() {
+    $("#boy").click(function() {
+        $("#choosen").text('boy')
+        play.sprite = "images/char-boy.png"
+    })
+    $("#cat").click(function() {
+        $("#choosen").text('Cat Girl')
+        play.sprite = "images/char-cat-girl.png"
+    })
+    $("#princess").click(function() {
+        $("#choosen").text('Princess Girl')
+        play.sprite = "images/char-princess-girl.png"
+    })
     
+    
+})
+
